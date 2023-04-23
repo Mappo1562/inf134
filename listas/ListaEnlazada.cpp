@@ -46,5 +46,5 @@ tLista::tLista() {
 
 
 void tLista::clear(){
-    
+
 }
