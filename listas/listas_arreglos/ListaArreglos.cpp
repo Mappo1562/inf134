@@ -1,35 +1,6 @@
 #include <iostream>
-#include <fstream>
-#include <cstring>
-using namespace std;
+#include "ListaArreglos.hpp"
 
-typedef int tElemLista;
-int MAXSIZE=500;
-
-class tLista {
-    private:
-        unsigned int maxSize; // tamaño máximo de la lista
-        unsigned int listSize; // tamaño actual de la lista
-        unsigned int curr; // posición actual de la lista
-        tElemLista* listArray; // arreglo con los elementos de la lista
-    public:
-        tLista();
-        ~tLista();
-        void clear();
-        int insert(tElemLista item);
-        int append(tElemLista item);
-        tElemLista erase();
-        void moveToStart();
-        void moveToEnd();
-        void next();
-        void prev();
-        int length();
-        int currPos();
-        void moveToPos(int pos);
-        tElemLista getValue();
-
-        void print();
-};
 
 
 // inicializa una lista como vacía
@@ -116,7 +87,7 @@ tLista::~tLista() {
 
 
 // retorna el número de elementos en la lista
-int tLista::length(){       //  desde aqui son inventos mios, probable error
+int tLista::length(){
     return listSize;
 }
 
@@ -140,48 +111,10 @@ tElemLista tLista::getValue(){
 }
 
 
-
-
-
-
-
-
-
-
-
-
 // **   *      Zona De Pruebas      *   ** //
 
 
 void tLista::print(){
-    for (unsigned int i=0 ; i<=listSize ; i++)
+    for (unsigned int i=0 ; i<listSize ; i++)
         cout<<"["<<listArray[i]<<"] ";      
-}
-
-
-int main(){
-    cout<<"\n";
-    tLista list;
-    for (int i=1;i<50;i*=2)
-        list.append(i);
-
-    list.moveToEnd();
-    cout<<"el ultimo valor es: "<<list.getValue();
-    cout<<"\n";
-
-    cout<<"la lista tiene "<<list.length()<<" datos, el 3er dato es ";
-    list.moveToPos(3);
-    cout<<list.getValue();
-
-    cout<<", los valores actuales de la lista son = ";
-    list.print();
-
-    cout<< "\ningresaremos un valor 7 en la posicion 5\n";
-    list.moveToPos(5);
-    list.insert(7);
-    cout<<"ahora el valor en la posicion 5 es "<<list.getValue()<<" y la lista completa quedaria= ";
-    list.print();
-
-    cout<<" con tamaño= "<<list.length()<<"\n\n";
-    return 0;
 }
