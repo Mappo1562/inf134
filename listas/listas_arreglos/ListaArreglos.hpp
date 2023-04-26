@@ -1,5 +1,4 @@
 typedef int tElemLista;
-int MAXSIZE=10000;
 using namespace std;
 
 
@@ -24,7 +23,7 @@ class tLista {
 
         void moveToStart();//               mueve la posición actual al comienzo de la lista
 
-        void moveToEnd();//                 mueve la posición actual al final de la lista
+        void moveToEnd();//                 mueve la posición actual al final de la lista deja una posicion adelante del ultimo elemento
 
         void next();//                      mueve la posición actual al siguiente elemento de la lista, no produce cambios si está en la cola de la lista
 

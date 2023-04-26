@@ -1,6 +1,6 @@
 #include <iostream>
 #include "ListaArreglos.hpp"
-
+int MAXSIZE=10000;
 
 
 // inicializa una lista como vacía
@@ -60,7 +60,7 @@ void tLista::moveToStart() {
 }
 
 
-// mueve la posición actual al final de la lista
+// mueve la posición actual al final de la lista deja una posicion adelante del ultimo elemento
 void tLista::moveToEnd() {
     curr = listSize; 
 }

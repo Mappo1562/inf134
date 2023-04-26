@@ -1,5 +1,5 @@
 #include <iostream>
-#include "ListaArreglos.cpp"
+#include "ListaArreglos.hpp"
 using namespace std;
 
 
