@@ -11,7 +11,6 @@ int main(){
     list.moveToStart();
 
     list.clear();
-    cout<<"volvi al main\n";
     list.print();
 
     cout<<"\n";

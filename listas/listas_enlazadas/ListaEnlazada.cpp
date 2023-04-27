@@ -13,14 +13,11 @@ tLista::~tLista(){}
 void tLista::clear(){//                     ojo con esta
     tNodo *aux;
     curr=head;
-    cout<<"estoy en clear\n";
     for (unsigned int i=0;i<listSize;i++){
         aux=curr->sig;
-        cout<<"eliminare "<<aux->info<<"\n";
         delete[] curr;
         curr=aux;
     }
-    cout<<"sali del for gracias a dios\n";
     head->sig=NULL;
     curr=tail=head;
 }
@@ -91,7 +88,6 @@ void tLista::print(){
     curr=head;
     pos=0;
     if (curr->sig==NULL){
-        cout<<"la lista esta vacia";
         return;
     }
     while(curr->sig!=NULL){
