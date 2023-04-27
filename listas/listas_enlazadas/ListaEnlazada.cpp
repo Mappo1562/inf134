@@ -88,6 +88,7 @@ void tLista::print(){
     curr=head;
     pos=0;
     if (curr->sig==NULL){
+        cout<<"lista vacia";
         return;
     }
     while(curr->sig!=NULL){
