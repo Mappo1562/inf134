@@ -3,7 +3,6 @@ using namespace std;
 
 int main(){
     tLista list;
-    int a;
     for (int i=0;i<10;i++){
         list.insert(i);
         list.next();
@@ -11,13 +10,8 @@ int main(){
     list.print();
     list.moveToStart();
 
-    for (int i=0;i<list.length();i++){// este for sirve para recorrer la lista
-        list.next();
-        a=list.getValue();
-        cout<<"["<<a<<"] ";
-    }
-    cout<<"\n";
     list.clear();
+    cout<<"volvi al main\n";
     list.print();
 
     cout<<"\n";

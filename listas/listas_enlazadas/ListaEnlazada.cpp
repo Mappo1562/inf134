@@ -11,13 +11,16 @@ tLista::tLista() {
 tLista::~tLista(){}
 
 void tLista::clear(){//                     ojo con esta
-    tNodo *aux,*pointer;
-    aux=head->sig;
+    tNodo *aux;
+    curr=head;
+    cout<<"estoy en clear\n";
     for (unsigned int i=0;i<listSize;i++){
-        pointer=aux->sig;
-        delete[] aux;
-        aux=pointer;
+        aux=curr->sig;
+        cout<<"eliminare "<<aux->info<<"\n";
+        delete[] curr;
+        curr=aux;
     }
+    cout<<"sali del for gracias a dios\n";
     head->sig=NULL;
     curr=tail=head;
 }
@@ -79,24 +82,22 @@ void tLista::moveToPos(unsigned int posicion) {
 }
 
 tElemLista tLista::getValue(){
-    return curr->info;
-}
-
-int tLista::length(){
-    return listSize;
+    return curr->sig->info;
 }
 
 ////////        funciones hechas por mi         ////////
 
 void tLista::print(){
-    curr=head->sig;
+    curr=head;
     pos=0;
+    if (curr->sig==NULL){
+        cout<<"la lista esta vacia";
+        return;
+    }
     while(curr->sig!=NULL){
-        cout<<"["<<curr->info<<"] ";
+        cout<<"["<<curr->sig->info<<"] ";
         curr=curr->sig;
         pos++;
     }
-    if (curr->sig==NULL && pos==0)
-        cout<<"la lista esta vacia";
     cout<<"\n";
 }
