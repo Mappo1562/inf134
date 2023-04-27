@@ -15,7 +15,7 @@ class tLista {
     private:
         tNodo* head;
         tNodo* tail;
-        tNodo* curr;
+        tNodo* curr;//                                      apuntara siempre al nodo anterior del actual, para acceder al valor seria curr->sig->info
         unsigned int listSize;
         unsigned int pos; // posicion actual en la lista
     public:

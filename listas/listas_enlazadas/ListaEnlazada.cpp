@@ -42,7 +42,7 @@ tElemLista tLista::erase(){//               ojo con esta
 }
 
 void tLista::moveToStart(){ 
-    curr = head->sig; pos = 0; 
+    curr = head; pos = 0; 
 }
 
 void tLista::moveToEnd(){ 
