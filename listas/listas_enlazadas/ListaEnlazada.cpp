@@ -1,41 +1,5 @@
-#include <iostream>
-#include <fstream>
-#include <cstring>
+#include "ListaEnlazada.hpp"
 using namespace std;
-
-
-typedef int tElemLista;
-
-struct tNodo{
- tElemLista info;
- tNodo* sig;
-};
-
-
-
-class tLista {
-    private:
-        tNodo* head;
-        tNodo* tail;
-        tNodo* curr;
-        unsigned int listSize;
-        unsigned int pos; // posicion actual en la lista
-    public:
-        tLista();
-        ~tLista();
-        void clear();//                         borra todos los elementos de la lista reiniciandola vacia
-        int insert(tElemLista item);//          inserta un elemento en la posicion actual de la lista          
-        int append(tElemLista item);
-        tElemLista erase();//                   borra el siguiente elemento (en base al curr) en la lista
-        void moveToStart();//                   curr se mueve al inicio
-        void moveToEnd();//                     curr se mueve al final
-        void next();//                          curr se mueve al siguiente
-        void prev();//                          curr se mueve al anterior
-        int length();
-        int currPos();
-        void moveToPos(unsigned int pos);
-        tElemLista getValue();
-};
 
 
 tLista::tLista() {
@@ -44,15 +8,18 @@ tLista::tLista() {
     pos = 0;
 }
 
+tLista::~tLista(){}
 
 void tLista::clear(){//                     ojo con esta
     tNodo *aux,*pointer;
     aux=head->sig;
-    for (int i=0;i<listSize;i++){
+    for (unsigned int i=0;i<listSize;i++){
         pointer=aux->sig;
         delete[] aux;
         aux=pointer;
     }
+    head->sig=NULL;
+    curr=tail=head;
 }
 
 int tLista::insert(tElemLista item) {
@@ -75,7 +42,7 @@ tElemLista tLista::erase(){//               ojo con esta
 }
 
 void tLista::moveToStart(){ 
-    curr = head; pos = 0; 
+    curr = head->sig; pos = 0; 
 }
 
 void tLista::moveToEnd(){ 
@@ -109,4 +76,27 @@ void tLista::moveToPos(unsigned int posicion) {
         curr = curr->sig;
         pos++;
     }
+}
+
+tElemLista tLista::getValue(){
+    return curr->info;
+}
+
+int tLista::length(){
+    return listSize;
+}
+
+////////        funciones hechas por mi         ////////
+
+void tLista::print(){
+    curr=head->sig;
+    pos=0;
+    while(curr->sig!=NULL){
+        cout<<"["<<curr->info<<"] ";
+        curr=curr->sig;
+        pos++;
+    }
+    if (curr->sig==NULL && pos==0)
+        cout<<"la lista esta vacia";
+    cout<<"\n";
 }
