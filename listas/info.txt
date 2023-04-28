@@ -1,6 +1,7 @@
+
 lista_arreglos          terminada               no revisada completamente
 listaEnlazada           no terminada            
-pila                    no terminada                                                    (tambien tiene variable de enlazada)
+pila                    terminada               no revisada                             (tambien tiene variable de enlazada)
 cola                    no terminada                                                    (la cola simple no sirve)
 
 pila:
