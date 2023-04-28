@@ -32,9 +32,26 @@ void tPila::pop(){
 }
 
 tElemPila tPila::topValue(){
-    return stackArray[top];
+    return stackArray[top-1];
 }
 
 int tPila::size(){
-    return top;
+    return top-1;
+}
+
+
+
+
+
+
+
+
+
+
+void tPila::print(){
+    for (int i=top-1;i>0;i--)
+        cout<<"["<<stackArray[i]<<"] ";
+    if (top==0)
+        cout<<"la pila esta vacia";
+    cout<<"\n";
 }

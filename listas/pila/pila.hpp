@@ -1,8 +1,9 @@
 #include <iostream>
 #include <fstream>
 #include <cstring>
+using namespace std;
 
-typedef tElemPila;
+typedef int tElemPila;
 
 class tPila{
     private:
@@ -14,13 +15,22 @@ class tPila{
         tPila();
         ~tPila();
 
-        void clear ();//                reinicializa una pila como vacía
-        
-        int push (tElemPila item);//    inserta un elemento en el tope de la pila
-        
-        void pop ();//                  elimina el elemento que está en el tope de la pila
-        
-        tElemPila topValue ();//        retorna una copia del elemento que está en el tope de la pila
-        
-        int size ();//                  retorna el tamaño de una pila
+//  reinicializa una pila como vacía
+        void clear ();
+
+//  inserta un elemento en el tope de la pila
+        int push (tElemPila item);
+
+//  elimina el elemento que está en el tope de la pila
+        void pop ();
+
+//  retorna una copia del elemento que está en el tope de la pila     
+        tElemPila topValue ();
+
+//  retorna el tamaño de una pila        
+        int size ();
+
+////        ojo que aqui comienzan mis funciones (no se deverian usar)        ////
+
+        void print();
 };
