@@ -1,0 +1,10 @@
+lista_arreglos          terminada               no revisada completamente
+listaEnlazada           no terminada            
+pila                    no terminada                                                    (tambien tiene variable de enlazada)
+cola                    no terminada                                                    (la cola simple no sirve)
+
+pila:
+    solo se mueve el tope, es decir solo se puede interactuar con el ultimo valor ingresado, no se puede volver ni consultar otros valores
+
+cola:
+    se mueve el tope y el final, los valores entran por el final y se eliminan por el frente, solo se puede consultar por el valor en el frente
