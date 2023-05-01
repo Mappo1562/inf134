@@ -2,6 +2,120 @@
 using namespace std;
 
 
+
+
+tLista::tLista() {
+ head = tail = curr = new tNodo;
+ listSize = 0;
+ pos = 0;
+}
+
+//
+void tLista::clear(){
+    tNodo* aux;
+    curr=head;
+    for (int i=0;i<listSize;i++){
+        aux= curr->sig->sig;
+        delete[] curr->sig;
+        curr=aux;
+    }
+    listSize=0;
+    pos=0;
+}
+
+
+int tLista::insert(tElemLista item) {
+    tNodo* aux = curr->sig;
+    curr->sig = new tNodo;
+    curr->sig->info = item;
+    curr->sig->sig = aux;
+    if (curr == tail)   
+        tail = curr->sig;
+    listSize++;
+    return pos;
+}
+
+
+void tLista::moveToStart() { 
+    curr = head; 
+    pos = 0; 
+}
+
+
+void tLista::moveToEnd() { 
+    curr = tail; 
+    pos = listSize; 
+}
+
+
+void tLista::prev() {
+    tNodo* temp;
+    if (curr == head)   
+        return;
+    temp = head;
+    while (temp->sig != curr) 
+        temp = temp->sig;
+    curr = temp;
+    pos--;
+}
+
+
+void tLista::next() { 
+    if (curr != tail) { 
+        curr = curr->sig; 
+        pos++; 
+    } 
+}
+
+
+void tLista::moveToPos(int posicion) {
+    if (posicion < 0 || posicion > listSize) 
+        return;
+    curr = head;
+    pos = 0;
+    for (int i = 0; i < posicion; i++) {
+        curr = curr->sig;
+        pos++;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 tLista::tLista() {
     head = tail = curr = new tNodo;
     listSize = 0;
@@ -80,7 +194,7 @@ void tLista::moveToPos(int posicion) {
 tElemLista tLista::getValue(){
     return curr->sig->info;
 }
-
+*/
 ////////        funciones hechas por mi         ////////
 /*
 void tLista::print(){
