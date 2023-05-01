@@ -8,7 +8,7 @@ int main(){
         list.insert(i);//                       insert y next funciona
         list.next();
     }
-    list.print();
+    //list.print();
 
     list.moveToStart();
      for(int i=0;i<10;i++){//                   get value funciona
@@ -18,7 +18,7 @@ int main(){
     cout<<"\n";
 
     list.clear();//                             clear creo que funciona bien, (por lo menos logra eliminar la lista)
-    list.print();
+    //list.print();
 
     cout<<"\n";
     return 0;

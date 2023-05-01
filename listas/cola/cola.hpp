@@ -1,18 +1,20 @@
 #include <iostream>
 #include <fstream>
 #include <cstring>
-
-typedef tElemCola;
+using namespace std;
+typedef int tElemCola;
 
 ////        cola circular       ////
 
 class tCola{
     private:
-        int* frente;
-        int* final;
+        int frente;
+        int final;
         tElemCola* array;
     
     public:
+        tCola();
+        ~tCola();
         
         void clear ();//                reinicializa una cola como vacía
 
@@ -23,4 +25,8 @@ class tCola{
         tElemCola frontValue ();//      retorna una copia del elemento que está en el frente de la cola
         
         int size ();//                  retorna el tamaño de una cola
+
+
+        void print();
+        void print2();
 };

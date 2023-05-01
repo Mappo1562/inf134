@@ -66,13 +66,12 @@ void tLista::next(){
     } 
 }
 
-void tLista::moveToPos(unsigned int posicion) {
-    unsigned int i;
+void tLista::moveToPos(int posicion) {
     if (posicion < 0 || posicion > listSize) 
         return;
     curr = head;
     pos = 0;
-    for (i = 0; i < posicion; i++) {
+    for (int i = 0; i < posicion; i++) {
         curr = curr->sig;
         pos++;
     }
@@ -83,7 +82,7 @@ tElemLista tLista::getValue(){
 }
 
 ////////        funciones hechas por mi         ////////
-
+/*
 void tLista::print(){
     curr=head;
     pos=0;
@@ -98,3 +97,4 @@ void tLista::print(){
     }
     cout<<"\n";
 }
+*/
