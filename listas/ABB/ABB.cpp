@@ -11,6 +11,8 @@ tabb::tabb(){
     nElems = 0;
 }
 
+
+
 void clearHelp(tNodoArbolBin *nodo) {
     if (nodo == NULL) return; //    árbol vacío, se detiene
     clearHelp(nodo->izq); //        visita subárbol izquierdo recursivamente
@@ -24,9 +26,7 @@ void tabb::clear() {
  nElems = 0;
 }
 
-void procesar(tNodoArbolBin* nodo){
-    return;
-}
+
 
 void preOrdenHelp(tNodoArbolBin *nodo){
     if (nodo == NULL) return;
@@ -39,6 +39,8 @@ void tabb::preOrden(){
     preOrdenHelp(raiz);
 }
 
+
+
 void inOrdenHelp (tNodoArbolBin *nodo) {
     if (nodo == NULL) return;
     inOrdenHelp (nodo->izq); //     visita hijo izquierdo en in-orden
@@ -50,6 +52,8 @@ void tabb::inOrden () {
     inOrdenHelp (raiz);
 }
 
+
+
 void postOrdenHelp(tNodoArbolBin *nodo){
     if (nodo == NULL) return;
     inOrdenHelp (nodo->izq); //     visita hijo izquierdo en post-orden
@@ -60,6 +64,8 @@ void postOrdenHelp(tNodoArbolBin *nodo){
 void tabb::postOrden(){
     postOrdenHelp(raiz);
 }
+
+
 
 int findHelp(tNodoArbolBin *nodo, tipoElem item) {
     if (nodo == NULL) return 0; // item no está en el ABB
@@ -74,18 +80,54 @@ int tabb::find(tipoElem item) {
  return findHelp(raiz, item);
 }
 
+
+
+//      Mis Funciones
+
+
+
 tabb::~tabb(){
 
 }
 
-void tabb::remove(tipoElem item){
+
+
+bool removeHelp(tNodoArbolBin *nodo, tipoElem item){
 
 }
 
-int tabb::size(){
+void tabb::remove(tipoElem item){
+    if (!findHelp(raiz,item)){
+        cout<<"****    ERROR    ****\nel dato "<<item<<" no existe, pot lo tanto no se puede eliminar";
+    }
+    
+    removeHelp(raiz,item);
+}
 
+
+
+int tabb::size(){
+    return nElems;
+}
+
+
+
+bool insertHelp(tNodoArbolBin *nodo, tipoElem item){
+    if (nodo==NULL){
+        nodo=new tNodoArbolBin;
+        nodo->info=item;
+        return 1;
+    }
+    if (item<nodo->info) return insertHelp(nodo->izq,item);
+    if (item==nodo->info){
+        cout<<"****    ERROR    ****\nel dato "<<nodo->info<<" ya fue ingresado";
+        return 0;
+    }
+    if (item>nodo->info) return insertHelp(nodo->der,item);
 }
 
 void tabb::insert(tipoElem item){
-
+    bool flag=insertHelp(raiz,item);
+    if (flag)
+        nElems++;
 }
