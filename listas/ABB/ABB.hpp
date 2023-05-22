@@ -12,14 +12,14 @@ struct tNodoArbolBin{
     tNodoArbolBin* der;
 };
 
-class tABB{
+class tabb{
     private:
         tNodoArbolBin* raiz;
         int nElems;
     
     public:
-        tABB();
-        ~tABB();
+        tabb();
+        ~tabb();
 
         void clear();//                 elimina todos los elementos de un ABB, dejándolo vacío
 

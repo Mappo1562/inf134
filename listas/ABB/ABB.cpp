@@ -6,7 +6,7 @@ void procesar(tipoElem nodo){
 }
 
 
-tABB::tAAB(){
+tabb::tabb(){
     raiz = NULL;
     nElems = 0;
 }
@@ -18,7 +18,7 @@ void clearHelp(tNodoArbolBin *nodo) {
     delete nodo; //                 después de borrar subárboles, se borra a sí mismo
 }
 
-void tAAB::clear() {
+void tabb::clear() {
  clearHelp(raiz); // función auxiliar para eliminar los nodos
  raiz = NULL;
  nElems = 0;
@@ -28,8 +28,15 @@ void procesar(tNodoArbolBin* nodo){
     return;
 }
 
-void tAAB::inOrden () {
-    inOrdenHelp (raiz);
+void preOrdenHelp(tNodoArbolBin *nodo){
+    if (nodo == NULL) return;
+    procesar(nodo->info); //        procesa nodo actual (se hace lo que necesite)
+    inOrdenHelp (nodo->izq); //     visita hijo izquierdo en pre-orden
+    inOrdenHelp (nodo->der); //     visita hijo derecho en pre-orden
+}
+
+void tabb::preOrden(){
+    preOrdenHelp(raiz);
 }
 
 void inOrdenHelp (tNodoArbolBin *nodo) {
@@ -39,13 +46,31 @@ void inOrdenHelp (tNodoArbolBin *nodo) {
     inOrdenHelp (nodo->der); //     visita hijo derecho en in-orden
 }
 
-void tABB::preOrden(){
-    preOrdenHelp(raiz);
+void tabb::inOrden () {
+    inOrdenHelp (raiz);
 }
 
-void preOrdenHelp(tNodoArbolBin *nodo){
+void postOrdenHelp(tNodoArbolBin *nodo){
     if (nodo == NULL) return;
+    inOrdenHelp (nodo->izq); //     visita hijo izquierdo en post-orden
+    inOrdenHelp (nodo->der); //     visita hijo derecho en post-orden
     procesar(nodo->info); //        procesa nodo actual (se hace lo que necesite)
-    inOrdenHelp (nodo->izq); //     visita hijo izquierdo en pre-orden
-    inOrdenHelp (nodo->der); //     visita hijo derecho en pre-orden
 }
+
+void tabb::postOrden(){
+    postOrdenHelp(raiz);
+}
+
+int findHelp(tNodoArbolBin *nodo, tipoElem item) {
+    if (nodo == NULL) return 0; // item no está en el ABB
+    if (nodo->info == item) return 1; // item encontrado
+    if (item < nodo->info)
+        return findHelp(nodo->izq, item);
+    else
+        return findHelp(nodo->der, item);
+}
+
+int tabb::find(tipoElem item) {
+ return findHelp(raiz, item);
+}
+
