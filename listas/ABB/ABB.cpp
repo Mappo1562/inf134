@@ -74,3 +74,18 @@ int tabb::find(tipoElem item) {
  return findHelp(raiz, item);
 }
 
+tabb::~tabb(){
+
+}
+
+void tabb::remove(tipoElem item){
+
+}
+
+int tabb::size(){
+
+}
+
+void tabb::insert(tipoElem item){
+
+}
