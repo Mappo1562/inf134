@@ -87,7 +87,7 @@ int tabb::find(tipoElem item) {
 
 
 tabb::~tabb(){
-
+    clear();
 }
 
 
