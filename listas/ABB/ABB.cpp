@@ -151,22 +151,29 @@ int tabb::size(){
 
 
 
-bool insertHelp(tNodoArbolBin *nodo, tipoElem item){
+void insertHelp(tNodoArbolBin *&nodo, tipoElem item,bool &flag){
     if (nodo==NULL){
         nodo=new tNodoArbolBin;
         nodo->info=item;
-        return 1;
+        nodo->izq=NULL;
+        nodo->der=NULL;
+        flag= 1;
     }
-    if (item<nodo->info) return insertHelp(nodo->izq,item);
-    if (item==nodo->info){
-        cout<<"****    ERROR    ****\nel dato "<<nodo->info<<" ya fue ingresado";
-        return 0;
+    else if (item<nodo->info)
+        insertHelp(nodo->izq,item,flag);
+
+    else if (item>nodo->info)
+        insertHelp(nodo->der,item,flag);
+
+    else if (item==nodo->info){
+        cout<<"****    ERROR    ****\nel dato "<<nodo->info<<" ya fue ingresado\nerror en ABB.cpp linea 167\n";
+        flag= 0;
     }
-    if (item>nodo->info) return insertHelp(nodo->der,item);
 }
 
 void tabb::insert(tipoElem item){
-    bool flag=insertHelp(raiz,item);
+    bool flag;
+    insertHelp(raiz,item,flag);
     if (flag)
         nElems++;
 }
