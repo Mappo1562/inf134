@@ -3,7 +3,7 @@
 #include <cstring>
 
 using namespace std;
-typedef tipoElem;
+typedef int tipoElem;
 
 
 struct tNodoArbolBin{

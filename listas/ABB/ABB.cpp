@@ -21,9 +21,9 @@ void clearHelp(tNodoArbolBin *nodo) {
 }
 
 void tabb::clear() {
- clearHelp(raiz); // función auxiliar para eliminar los nodos
- raiz = NULL;
- nElems = 0;
+    clearHelp(raiz); // función auxiliar para eliminar los nodos
+    raiz = NULL;
+    nElems = 0;
 }
 
 
@@ -92,16 +92,55 @@ tabb::~tabb(){
 
 
 
-bool removeHelp(tNodoArbolBin *nodo, tipoElem item){
+tNodoArbolBin* find_predecesor(tNodoArbolBin* raiz){
+    if (raiz->der==NULL)
+        return raiz;
+    find_predecesor(raiz->der);
+}
 
+void removeHelp(tNodoArbolBin *nodo, tipoElem item){
+    if (nodo->info==item){
+        if (nodo->izq==NULL && nodo->der==NULL){
+            delete[] nodo;
+            nodo=NULL;
+        }
+        else if (nodo->izq!=NULL && nodo->der==NULL){
+            tNodoArbolBin *aux=nodo->izq;
+            delete[] nodo;
+            nodo=aux;
+        }
+        else if (nodo->der!=NULL && nodo->izq==NULL){
+            tNodoArbolBin *aux=nodo->der;
+            delete[] nodo;
+            nodo=aux;
+        }
+        else{
+            tNodoArbolBin* aux=find_predecesor(nodo->izq);
+            nodo->info=aux->info;
+            if (aux->izq==NULL)
+                delete[] aux;
+            else{
+                tNodoArbolBin* alo=nodo->izq;
+                delete[] aux;
+                aux=alo;
+            }
+        }
+    }
+    if (nodo == NULL) return;
+    if (item < nodo->info)
+        removeHelp(nodo->izq, item);
+    else
+        removeHelp(nodo->der, item);
 }
 
 void tabb::remove(tipoElem item){
-    if (!findHelp(raiz,item)){
-        cout<<"****    ERROR    ****\nel dato "<<item<<" no existe, pot lo tanto no se puede eliminar";
+    if (find(item)){
+        removeHelp(raiz,item);
+        nElems--;
     }
-    
-    removeHelp(raiz,item);
+    else{
+        cout<<"****    ERROR    ****\nel dato "<<item<<" no existe, por lo tanto no se puede eliminar";
+    }
 }
 
 
