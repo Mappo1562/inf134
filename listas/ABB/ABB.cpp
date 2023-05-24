@@ -77,7 +77,7 @@ int findHelp(tNodoArbolBin *nodo, tipoElem item) {
 }
 
 int tabb::find(tipoElem item) {
- return findHelp(raiz, item);
+    return findHelp(raiz, item);
 }
 
 
@@ -98,38 +98,52 @@ tNodoArbolBin* find_predecesor(tNodoArbolBin* raiz){
     find_predecesor(raiz->der);
 }
 
-void removeHelp(tNodoArbolBin *nodo, tipoElem item){
+void removeHelp(tNodoArbolBin *&nodo, tipoElem item){
     if (nodo->info==item){
         if (nodo->izq==NULL && nodo->der==NULL){
             delete[] nodo;
             nodo=NULL;
+            return;
         }
         else if (nodo->izq!=NULL && nodo->der==NULL){
             tNodoArbolBin *aux=nodo->izq;
             delete[] nodo;
             nodo=aux;
+            return;
         }
         else if (nodo->der!=NULL && nodo->izq==NULL){
             tNodoArbolBin *aux=nodo->der;
             delete[] nodo;
             nodo=aux;
+            return;
         }
+
         else{
             tNodoArbolBin* aux=find_predecesor(nodo->izq);
             nodo->info=aux->info;
-            if (aux->izq==NULL)
+            removeHelp(nodo->izq,nodo->info);
+            return;
+/*
+            if (aux->izq==NULL){
                 delete[] aux;
-            else{
-                tNodoArbolBin* alo=nodo->izq;
-                delete[] aux;
-                aux=alo;
+                aux=NULL;
+                return;
             }
+            else{
+                tNodoArbolBin* auxx=aux->izq;
+                tNodoArbolBin* padre=find_padre(aux,aux->info);
+                delete[] aux;
+                return;
+            }
+*/
         }
+
     }
-    if (nodo == NULL) return;
-    if (item < nodo->info)
+    if (nodo == NULL) 
+        return;
+    else if (item < nodo->info)
         removeHelp(nodo->izq, item);
-    else
+    else if (item>nodo->info)
         removeHelp(nodo->der, item);
 }
 
@@ -139,7 +153,7 @@ void tabb::remove(tipoElem item){
         nElems--;
     }
     else{
-        cout<<"****    ERROR    ****\nel dato "<<item<<" no existe, por lo tanto no se puede eliminar";
+        cout<<"****    ERROR    ****\nel dato "<<item<<" no existe, por lo tanto no se puede eliminar\nerror en ABB.cpp linea 165\n";
     }
 }
 
@@ -177,3 +191,47 @@ void tabb::insert(tipoElem item){
     if (flag)
         nElems++;
 }
+
+
+/////     funciones utiles     /////
+
+tNodoArbolBin* find_padre(tNodoArbolBin *raiz,tipoElem x){
+    if (raiz->info==x){
+        cout<<"****    ERROR    ****\nel dato "<<x<<" es la raiz del arbol, no tiene padre\nerror en ABB.cpp linea 88\n";
+    }
+    if (x<raiz->info){
+        if(raiz->izq->info==x)
+            return raiz;
+        
+        else
+            return find_padre(raiz->izq,x);
+    }
+    if (x>raiz->info){
+        if(raiz->der->info==x)
+            return raiz;
+        
+        else
+            return find_padre(raiz->der,x);
+    }
+    return 0;
+    
+}
+
+void lowerHelp(tNodoArbolBin* raiz,tipoElem x, int &opcion){
+    if (raiz==NULL) 
+        return;
+    if (raiz->info==x){
+        opcion=x;
+        return;
+    }
+    if (x<raiz->info)
+        return lowerHelp(raiz->izq,x,opcion);
+    if (x>raiz->info){
+        opcion=raiz->info;
+        return lowerHelp(raiz->der,x,opcion);
+    }
+}
+
+int tabb::lower_bound(tipoElem x){
+    int opcion=-1;
+    lowerHelp(raiz,x,opcion);
